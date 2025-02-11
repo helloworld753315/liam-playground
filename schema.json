@@ -1,0 +1,932 @@
+{
+  "name": "db.sqlite3",
+  "tables": [
+    {
+      "name": "django_migrations",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "app",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "name": "applied",
+          "type": "datetime",
+          "nullable": false
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "django_migrations",
+          "columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"django_migrations\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"app\" varchar(255) NOT NULL, \"name\" varchar(255) NOT NULL, \"applied\" datetime NOT NULL)"
+    },
+    {
+      "name": "auth_group_permissions",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "group_id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "permission_id",
+          "type": "INTEGER",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "auth_group_permissions_permission_id_84c5c92e",
+          "def": "CREATE INDEX \"auth_group_permissions_permission_id_84c5c92e\" ON \"auth_group_permissions\" (\"permission_id\")",
+          "table": "auth_group_permissions",
+          "columns": [
+            "permission_id"
+          ]
+        },
+        {
+          "name": "auth_group_permissions_group_id_b120cbf9",
+          "def": "CREATE INDEX \"auth_group_permissions_group_id_b120cbf9\" ON \"auth_group_permissions\" (\"group_id\")",
+          "table": "auth_group_permissions",
+          "columns": [
+            "group_id"
+          ]
+        },
+        {
+          "name": "auth_group_permissions_group_id_permission_id_0cd325b0_uniq",
+          "def": "CREATE UNIQUE INDEX \"auth_group_permissions_group_id_permission_id_0cd325b0_uniq\" ON \"auth_group_permissions\" (\"group_id\", \"permission_id\")",
+          "table": "auth_group_permissions",
+          "columns": [
+            "group_id",
+            "permission_id"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_group_permissions",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (permission_id) REFERENCES auth_permission (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_group_permissions",
+          "referenced_table": "auth_permission",
+          "columns": [
+            "permission_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 1)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (group_id) REFERENCES auth_group (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_group_permissions",
+          "referenced_table": "auth_group",
+          "columns": [
+            "group_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_group_permissions\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"group_id\" integer NOT NULL REFERENCES \"auth_group\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"permission_id\" integer NOT NULL REFERENCES \"auth_permission\" (\"id\") DEFERRABLE INITIALLY DEFERRED)"
+    },
+    {
+      "name": "auth_user_groups",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "group_id",
+          "type": "INTEGER",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "auth_user_groups_group_id_97559544",
+          "def": "CREATE INDEX \"auth_user_groups_group_id_97559544\" ON \"auth_user_groups\" (\"group_id\")",
+          "table": "auth_user_groups",
+          "columns": [
+            "group_id"
+          ]
+        },
+        {
+          "name": "auth_user_groups_user_id_6a12ed8b",
+          "def": "CREATE INDEX \"auth_user_groups_user_id_6a12ed8b\" ON \"auth_user_groups\" (\"user_id\")",
+          "table": "auth_user_groups",
+          "columns": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "auth_user_groups_user_id_group_id_94350c0c_uniq",
+          "def": "CREATE UNIQUE INDEX \"auth_user_groups_user_id_group_id_94350c0c_uniq\" ON \"auth_user_groups\" (\"user_id\", \"group_id\")",
+          "table": "auth_user_groups",
+          "columns": [
+            "user_id",
+            "group_id"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_user_groups",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (group_id) REFERENCES auth_group (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_user_groups",
+          "referenced_table": "auth_group",
+          "columns": [
+            "group_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 1)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_user_groups",
+          "referenced_table": "auth_user",
+          "columns": [
+            "user_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_user_groups\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"user_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"group_id\" integer NOT NULL REFERENCES \"auth_group\" (\"id\") DEFERRABLE INITIALLY DEFERRED)"
+    },
+    {
+      "name": "auth_user_user_permissions",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "permission_id",
+          "type": "INTEGER",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "auth_user_user_permissions_permission_id_1fbb5f2c",
+          "def": "CREATE INDEX \"auth_user_user_permissions_permission_id_1fbb5f2c\" ON \"auth_user_user_permissions\" (\"permission_id\")",
+          "table": "auth_user_user_permissions",
+          "columns": [
+            "permission_id"
+          ]
+        },
+        {
+          "name": "auth_user_user_permissions_user_id_a95ead1b",
+          "def": "CREATE INDEX \"auth_user_user_permissions_user_id_a95ead1b\" ON \"auth_user_user_permissions\" (\"user_id\")",
+          "table": "auth_user_user_permissions",
+          "columns": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq",
+          "def": "CREATE UNIQUE INDEX \"auth_user_user_permissions_user_id_permission_id_14a6b632_uniq\" ON \"auth_user_user_permissions\" (\"user_id\", \"permission_id\")",
+          "table": "auth_user_user_permissions",
+          "columns": [
+            "user_id",
+            "permission_id"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_user_user_permissions",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (permission_id) REFERENCES auth_permission (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_user_user_permissions",
+          "referenced_table": "auth_permission",
+          "columns": [
+            "permission_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 1)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_user_user_permissions",
+          "referenced_table": "auth_user",
+          "columns": [
+            "user_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_user_user_permissions\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"user_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"permission_id\" integer NOT NULL REFERENCES \"auth_permission\" (\"id\") DEFERRABLE INITIALLY DEFERRED)"
+    },
+    {
+      "name": "django_admin_log",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "object_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "object_repr",
+          "type": "varchar(200)",
+          "nullable": false
+        },
+        {
+          "name": "action_flag",
+          "type": "smallint unsigned",
+          "nullable": false
+        },
+        {
+          "name": "change_message",
+          "type": "TEXT",
+          "nullable": false
+        },
+        {
+          "name": "content_type_id",
+          "type": "INTEGER",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "action_time",
+          "type": "datetime",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "django_admin_log_user_id_c564eba6",
+          "def": "CREATE INDEX \"django_admin_log_user_id_c564eba6\" ON \"django_admin_log\" (\"user_id\")",
+          "table": "django_admin_log",
+          "columns": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "django_admin_log_content_type_id_c4bce8eb",
+          "def": "CREATE INDEX \"django_admin_log_content_type_id_c4bce8eb\" ON \"django_admin_log\" (\"content_type_id\")",
+          "table": "django_admin_log",
+          "columns": [
+            "content_type_id"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "django_admin_log",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "django_admin_log",
+          "referenced_table": "auth_user",
+          "columns": [
+            "user_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 1)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (content_type_id) REFERENCES django_content_type (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "django_admin_log",
+          "referenced_table": "django_content_type",
+          "columns": [
+            "content_type_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "-",
+          "type": "CHECK",
+          "def": "CHECK (\"action_flag\" \u003e= 0)",
+          "table": "django_admin_log",
+          "columns": [
+            "action_flag"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"django_admin_log\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"object_id\" text NULL, \"object_repr\" varchar(200) NOT NULL, \"action_flag\" smallint unsigned NOT NULL CHECK (\"action_flag\" \u003e= 0), \"change_message\" text NOT NULL, \"content_type_id\" integer NULL REFERENCES \"django_content_type\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"user_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"action_time\" datetime NOT NULL)"
+    },
+    {
+      "name": "django_content_type",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "app_label",
+          "type": "varchar(100)",
+          "nullable": false
+        },
+        {
+          "name": "model",
+          "type": "varchar(100)",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "django_content_type_app_label_model_76bd3d3b_uniq",
+          "def": "CREATE UNIQUE INDEX \"django_content_type_app_label_model_76bd3d3b_uniq\" ON \"django_content_type\" (\"app_label\", \"model\")",
+          "table": "django_content_type",
+          "columns": [
+            "app_label",
+            "model"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "django_content_type",
+          "columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"django_content_type\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"app_label\" varchar(100) NOT NULL, \"model\" varchar(100) NOT NULL)"
+    },
+    {
+      "name": "auth_permission",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "content_type_id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "codename",
+          "type": "varchar(100)",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "auth_permission_content_type_id_2f476e4b",
+          "def": "CREATE INDEX \"auth_permission_content_type_id_2f476e4b\" ON \"auth_permission\" (\"content_type_id\")",
+          "table": "auth_permission",
+          "columns": [
+            "content_type_id"
+          ]
+        },
+        {
+          "name": "auth_permission_content_type_id_codename_01ab375a_uniq",
+          "def": "CREATE UNIQUE INDEX \"auth_permission_content_type_id_codename_01ab375a_uniq\" ON \"auth_permission\" (\"content_type_id\", \"codename\")",
+          "table": "auth_permission",
+          "columns": [
+            "content_type_id",
+            "codename"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_permission",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (content_type_id) REFERENCES django_content_type (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "auth_permission",
+          "referenced_table": "django_content_type",
+          "columns": [
+            "content_type_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_permission\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"content_type_id\" integer NOT NULL REFERENCES \"django_content_type\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"codename\" varchar(100) NOT NULL, \"name\" varchar(255) NOT NULL)"
+    },
+    {
+      "name": "auth_group",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "varchar(150)",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_auth_group_1",
+          "def": "UNIQUE (name)",
+          "table": "auth_group",
+          "columns": [
+            "name"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_group",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "sqlite_autoindex_auth_group_1",
+          "type": "UNIQUE",
+          "def": "UNIQUE (name)",
+          "table": "auth_group",
+          "columns": [
+            "name"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_group\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(150) NOT NULL UNIQUE)"
+    },
+    {
+      "name": "auth_user",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "password",
+          "type": "varchar(128)",
+          "nullable": false
+        },
+        {
+          "name": "last_login",
+          "type": "datetime",
+          "nullable": true
+        },
+        {
+          "name": "is_superuser",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "username",
+          "type": "varchar(150)",
+          "nullable": false
+        },
+        {
+          "name": "last_name",
+          "type": "varchar(150)",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar(254)",
+          "nullable": false
+        },
+        {
+          "name": "is_staff",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "is_active",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "date_joined",
+          "type": "datetime",
+          "nullable": false
+        },
+        {
+          "name": "first_name",
+          "type": "varchar(150)",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_auth_user_1",
+          "def": "UNIQUE (username)",
+          "table": "auth_user",
+          "columns": [
+            "username"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "auth_user",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "sqlite_autoindex_auth_user_1",
+          "type": "UNIQUE",
+          "def": "UNIQUE (username)",
+          "table": "auth_user",
+          "columns": [
+            "username"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"auth_user\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"password\" varchar(128) NOT NULL, \"last_login\" datetime NULL, \"is_superuser\" bool NOT NULL, \"username\" varchar(150) NOT NULL UNIQUE, \"last_name\" varchar(150) NOT NULL, \"email\" varchar(254) NOT NULL, \"is_staff\" bool NOT NULL, \"is_active\" bool NOT NULL, \"date_joined\" datetime NOT NULL, \"first_name\" varchar(150) NOT NULL)"
+    },
+    {
+      "name": "blogs_post",
+      "type": "table",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false
+        },
+        {
+          "name": "title",
+          "type": "varchar(200)",
+          "nullable": false
+        },
+        {
+          "name": "content",
+          "type": "TEXT",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "nullable": false
+        },
+        {
+          "name": "author_id",
+          "type": "INTEGER",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "blogs_post_author_id_c7d05c07",
+          "def": "CREATE INDEX \"blogs_post_author_id_c7d05c07\" ON \"blogs_post\" (\"author_id\")",
+          "table": "blogs_post",
+          "columns": [
+            "author_id"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "id",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (id)",
+          "table": "blogs_post",
+          "columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "- (Foreign key ID: 0)",
+          "type": "FOREIGN KEY",
+          "def": "FOREIGN KEY (author_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE",
+          "table": "blogs_post",
+          "referenced_table": "auth_user",
+          "columns": [
+            "author_id"
+          ],
+          "referenced_columns": [
+            "id"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"blogs_post\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"title\" varchar(200) NOT NULL, \"content\" text NOT NULL, \"created_at\" datetime NOT NULL, \"updated_at\" datetime NOT NULL, \"author_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED)"
+    },
+    {
+      "name": "django_session",
+      "type": "table",
+      "columns": [
+        {
+          "name": "session_key",
+          "type": "varchar(40)",
+          "nullable": false
+        },
+        {
+          "name": "session_data",
+          "type": "TEXT",
+          "nullable": false
+        },
+        {
+          "name": "expire_date",
+          "type": "datetime",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "name": "django_session_expire_date_a5c62663",
+          "def": "CREATE INDEX \"django_session_expire_date_a5c62663\" ON \"django_session\" (\"expire_date\")",
+          "table": "django_session",
+          "columns": [
+            "expire_date"
+          ]
+        },
+        {
+          "name": "sqlite_autoindex_django_session_1",
+          "def": "PRIMARY KEY (session_key)",
+          "table": "django_session",
+          "columns": [
+            "session_key"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "name": "session_key",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (session_key)",
+          "table": "django_session",
+          "columns": [
+            "session_key"
+          ]
+        },
+        {
+          "name": "sqlite_autoindex_django_session_1",
+          "type": "PRIMARY KEY",
+          "def": "PRIMARY KEY (session_key)",
+          "table": "django_session",
+          "columns": [
+            "session_key"
+          ]
+        }
+      ],
+      "def": "CREATE TABLE \"django_session\" (\"session_key\" varchar(40) NOT NULL PRIMARY KEY, \"session_data\" text NOT NULL, \"expire_date\" datetime NOT NULL)"
+    }
+  ],
+  "relations": [
+    {
+      "table": "auth_group_permissions",
+      "columns": [
+        "permission_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_permission",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (permission_id) REFERENCES auth_permission (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_group_permissions",
+      "columns": [
+        "group_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_group",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (group_id) REFERENCES auth_group (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_user_groups",
+      "columns": [
+        "group_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_group",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (group_id) REFERENCES auth_group (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_user_groups",
+      "columns": [
+        "user_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_user",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_user_user_permissions",
+      "columns": [
+        "permission_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_permission",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (permission_id) REFERENCES auth_permission (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_user_user_permissions",
+      "columns": [
+        "user_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_user",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "django_admin_log",
+      "columns": [
+        "user_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_user",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (user_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "django_admin_log",
+      "columns": [
+        "content_type_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "django_content_type",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "zero_or_one",
+      "def": "FOREIGN KEY (content_type_id) REFERENCES django_content_type (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "auth_permission",
+      "columns": [
+        "content_type_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "django_content_type",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (content_type_id) REFERENCES django_content_type (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    },
+    {
+      "table": "blogs_post",
+      "columns": [
+        "author_id"
+      ],
+      "cardinality": "zero_or_more",
+      "parent_table": "auth_user",
+      "parent_columns": [
+        "id"
+      ],
+      "parent_cardinality": "exactly_one",
+      "def": "FOREIGN KEY (author_id) REFERENCES auth_user (id) ON UPDATE NO ACTION ON DELETE NO ACTION MATCH NONE"
+    }
+  ],
+  "driver": {
+    "name": "sqlite",
+    "database_version": "3.46.1"
+  }
+}
